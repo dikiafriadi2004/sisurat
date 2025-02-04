@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Tambah Restoran
+    Tambah Hotel
 @endsection
 
 @section('content')
@@ -21,11 +21,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-1 anchor" id="basic">
-                            Tambah Data Pajak Restoran
+                            Tambah Data Pajak Hotel
                         </h5>
                         <div class="">
                             <div>
-                                <form action="{{ route('restoran.store') }}" method="POST">
+                                <form action="{{ route('hotel.store') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">NPWPD</label>

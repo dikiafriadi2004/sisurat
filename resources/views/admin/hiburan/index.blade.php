@@ -1,8 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Dashboard
+    Pajak Hiburan
 @endsection
+
+@push('css')
+
+@endpush
 
 @section('content')
     <div class="container-fluid">
@@ -14,7 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-wrap justify-content-between gap-3">
-                            <form action="{{ route('restoran.index') }}" method="GET">
+                            <form action="{{ route('hiburan.index') }}" method="GET">
                                 <div class="search-bar">
                                     <span><i class="bx bx-search-alt"></i></span>
                                     <input type="search" class="form-control" id="search" name="search"
@@ -22,8 +26,8 @@
                                 </div>
                             </form>
                             <div>
-                                <a href="{{ route('restoran.create') }}" class="btn btn-primary">
-                                    <i class="bx bx-plus me-1"></i>Tambah Pajak Restoran
+                                <a href="{{ route('hiburan.create') }}" class="btn btn-primary">
+                                    <i class="bx bx-plus me-1"></i>Tambah Pajak Hiburan
                                 </a>
                             </div>
                         </div> <!-- end row -->
@@ -42,7 +46,7 @@
                                     </tr>
                                 </thead> <!-- end thead-->
                                 <tbody>
-                                    @foreach ($pajakrestoran as $item)
+                                    @foreach ($pajakhiburan as $item)
                                         <tr>
                                             <td>
                                                 <div>
@@ -70,10 +74,10 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="{{ route('restoran.edit', $item->id) }}"
+                                                <a href="{{ route('hiburan.edit', $item->id) }}"
                                                     class="btn btn-sm btn-soft-secondary me-1"><i
                                                         class="bx bx-edit fs-16"></i></a>
-                                                <form action="{{ route('restoran.destroy', $item->id) }}" method="POST">
+                                                <form action="{{ route('hiburan.destroy', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-soft-danger"><i
@@ -87,7 +91,7 @@
                         </div> <!-- table responsive -->
                         <div
                             class="align-items-center justify-content-between row g-0 text-center text-sm-start p-3 border-top">
-                            {{ $pajakrestoran->links() }}
+                            {{ $pajakhiburan->links() }}
                         </div>
                     </div> <!-- end card body -->
                 </div> <!-- end card -->
@@ -95,3 +99,8 @@
         </div> <!-- end row -->
     </div>
 @endsection
+
+
+@push('js')
+
+@endpush

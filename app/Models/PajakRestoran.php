@@ -9,6 +9,8 @@ class PajakRestoran extends Model
 {
     use HasFactory;
 
+    protected $table = 'pajak_restoran';
+
     protected $fillable = [
         'npwpd',
         'nama_pemilik',

@@ -9,6 +9,8 @@ class PajakHotel extends Model
 {
     use HasFactory;
 
+    protected $table = 'pajak_hotel';
+
     protected $fillable = [
         'npwpd',
         'nama_pemilik',

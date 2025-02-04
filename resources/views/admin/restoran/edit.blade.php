@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Tambah Restoran
+    Ubah Restoran
 @endsection
 
 @section('content')
@@ -21,34 +21,35 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-1 anchor" id="basic">
-                            Tambah Data Pajak Restoran
+                            Ubah Data Pajak Restoran
                         </h5>
                         <div class="">
                             <div>
-                                <form action="{{ route('restoran.store') }}" method="POST">
+                                <form action="{{ route('restoran.update', $pajakrestoran->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">NPWPD</label>
                                         <input type="text" class="form-control" name="npwpd" data-toggle="input-mask"
-                                            data-mask-format="NP099.099.099.099.000" data-reverse="true">
+                                            data-mask-format="NP099.099.099.099.000" data-reverse="true" value="{{ $pajakrestoran->npwpd }}" disabled>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Nama Pemilik</label>
-                                        <input type="text" id="simpleinput" name="nama_pemilik" class="form-control">
+                                        <input type="text" id="simpleinput" name="nama_pemilik" class="form-control" value="{{ $pajakrestoran->nama_pemilik }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Nama Usaha</label>
-                                        <input type="text" id="simpleinput" name="nama_usaha" class="form-control">
+                                        <input type="text" id="simpleinput" name="nama_usaha" class="form-control" value="{{ $pajakrestoran->nama_usaha }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="example-textarea" class="form-label">Alamat Usaha</label>
-                                        <textarea class="form-control" name="alamat_usaha" id="example-textarea" rows="5"></textarea>
+                                        <textarea class="form-control" name="alamat_usaha" id="example-textarea" rows="5">{{ $pajakrestoran->alamat_usaha }}</textarea>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="submit" class="btn btn-primary">Ubah</button>
                                 </form>
                             </div>
                         </div>
