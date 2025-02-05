@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pajak_hotel', function (Blueprint $table) {
             $table->id();
-            $table->string('npwpd');
+            $table->string('npwpd')->unique();
             $table->string('nama_pemilik');
             $table->string('nama_usaha');
             $table->string('alamat_usaha');

@@ -4,6 +4,10 @@
     Dashboard
 @endsection
 
+@push('css')
+
+@endpush
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -401,3 +405,13 @@
 
     </div>
 @endsection
+
+@push('js')
+    <!-- Vector Map Js -->
+        <script src="{{ asset('assets/vendor/jsvectormap/js/jsvectormap.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/jsvectormap/maps/world-merc.js') }}"></script>
+        <script src="{{ asset('assets/vendor/jsvectormap/maps/world.js') }}"></script>
+
+        <!-- Dashboard Js -->
+        <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
+@endpush
