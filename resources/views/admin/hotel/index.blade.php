@@ -70,14 +70,21 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="{{ route('hotel.edit', $item->id) }}"
-                                                    class="btn btn-sm btn-soft-secondary me-1"><i
-                                                        class="bx bx-edit fs-16"></i></a>
                                                 <form action="{{ route('hotel.destroy', $item->id) }}" method="POST">
+                                                    <a href="{{ route('hotel.edit', $item->id) }}"
+                                                        class="btn btn-sm btn-soft-secondary me-1"><i
+                                                            class="bx bx-edit fs-16"></i></a>
+                                                    <a href="{{ route('hotel.detail', $item->id) }}"
+                                                        class="btn btn-sm btn-soft-primary me-1"><i
+                                                            class="bx bx-file fs-16"></i></a>
+
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-soft-danger"><i
-                                                            class="bx bx-trash fs-16"></i></button>
+                                                    <a href="{{ route('hotel.destroy', $item->id) }}"
+                                                        class="btn btn-sm btn-soft-danger"
+                                                        onclick="event.preventDefault();
+                                                this.closest('form').submit();"><i
+                                                            class="bx bx-trash fs-16"></i></a>
                                                 </form>
                                             </td>
                                         </tr>

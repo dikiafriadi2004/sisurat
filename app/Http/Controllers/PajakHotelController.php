@@ -42,6 +42,12 @@ class PajakHotelController extends Controller
         return redirect()->route('hotel.index')->with('success', 'Pajak Hotel berhasil disimpan');
     }
 
+    public function show($id)
+    {
+        $pajakhotel = PajakHotel::find($id);
+        return view('admin.hotel.detail', compact('pajakhotel'));
+    }
+
     public function edit($id)
     {
         $pajakhotel = PajakHotel::find($id);

@@ -42,6 +42,12 @@ class PajakRestoranController extends Controller
         return redirect()->route('restoran.index')->with('success', 'Pajak restoran berhasil disimpan');
     }
 
+    public function show($id)
+    {
+        $pajakrestoran = PajakRestoran::find($id);
+        return view('admin.restoran.detail', compact('pajakrestoran'));
+    }
+
     public function edit($id)
     {
         $pajakrestoran = PajakRestoran::find($id);

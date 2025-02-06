@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/restoran/create', [PajakRestoranController::class, 'create'])->name('restoran.create');
     Route::post('/restoran/store', [PajakRestoranController::class, 'store'])->name('restoran.store');
     Route::get('/restoran/{id}/edit', [PajakRestoranController::class, 'edit'])->name('restoran.edit');
+    Route::get('/restoran/{id}', [PajakRestoranController::class, 'show'])->name('restoran.detail');
     Route::put('/restoran/{id}', [PajakRestoranController::class, 'update'])->name('restoran.update');
     Route::delete('/restoran/{id}', [PajakRestoranController::class, 'destroy'])->name('restoran.destroy');
 
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/hotel/create', [PajakHotelController::class, 'create'])->name('hotel.create');
     Route::post('/hotel/store', [PajakHotelController::class, 'store'])->name('hotel.store');
     Route::get('/hotel/{id}/edit', [PajakHotelController::class, 'edit'])->name('hotel.edit');
+    Route::get('/hotel/{id}', [PajakHotelController::class, 'show'])->name('hotel.detail');
     Route::put('/hotel/{id}', [PajakHotelController::class, 'update'])->name('hotel.update');
     Route::delete('/hotel/{id}', [PajakHotelController::class, 'destroy'])->name('hotel.destroy');
 
@@ -43,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/hiburan/create', [PajakHiburanController::class, 'create'])->name('hiburan.create');
     Route::post('/hiburan/store', [PajakHiburanController::class, 'store'])->name('hiburan.store');
     Route::get('/hiburan/{id}/edit', [PajakHiburanController::class, 'edit'])->name('hiburan.edit');
+    Route::get('/hiburan/{id}', [PajakHiburanController::class, 'show'])->name('hiburan.detail');
     Route::put('/hiburan/{id}', [PajakHiburanController::class, 'update'])->name('hiburan.update');
     Route::delete('/hiburan/{id}', [PajakHiburanController::class, 'destroy'])->name('hiburan.destroy');
 });

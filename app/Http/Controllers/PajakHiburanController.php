@@ -42,6 +42,12 @@ class PajakHiburanController extends Controller
         return redirect()->route('hiburan.index')->with('success', 'Pajak Hiburan berhasil disimpan');
     }
 
+    public function show($id)
+    {
+        $pajakhiburan = PajakHiburan::find($id);
+        return view('admin.hiburan.detail', compact('pajakhiburan'));
+    }
+
     public function edit($id)
     {
         $pajakhiburan = PajakHiburan::find($id);
