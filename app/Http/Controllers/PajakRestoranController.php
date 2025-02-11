@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PajakRestoran;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\PajakRestoran;
 
 class PajakRestoranController extends Controller
 {
@@ -15,6 +16,9 @@ class PajakRestoranController extends Controller
                 $query->where('nama_pemilik', 'like', "%{$search}%")->orWhere('nama_usaha', 'like', "%{$search}%");
             }
         })->orderBy('id', 'desc')->paginate(10)->withQueryString();
+
+        // Script Word
+
         return view('admin.restoran.index', compact('pajakrestoran'));
     }
 
@@ -28,6 +32,7 @@ class PajakRestoranController extends Controller
         $request->validate([
             'npwpd' => 'required|min:3',
             'nama_pemilik' => 'required',
+            'no_hp' => 'required',
             'nama_usaha' => 'required',
             'alamat_usaha' => 'required',
         ]);
@@ -35,6 +40,8 @@ class PajakRestoranController extends Controller
         PajakRestoran::create([
             'npwpd' => $request->npwpd,
             'nama_pemilik' => $request->nama_pemilik,
+            'slug' => Str::slug($request->nama_pemilik . '-'. Str::random(5)),
+            'no_hp' => $request->no_hp,
             'nama_usaha' => $request->nama_usaha,
             'alamat_usaha' => $request->alamat_usaha,
         ]);
@@ -58,6 +65,7 @@ class PajakRestoranController extends Controller
     {
         $request->validate([
             'nama_pemilik' => 'required',
+            'no_hp' => 'required',
             'nama_usaha' => 'required',
             'alamat_usaha' => 'required',
         ]);
@@ -66,6 +74,7 @@ class PajakRestoranController extends Controller
 
         $pajakrestoran->update([
             'nama_pemilik' => $request->nama_pemilik,
+            'no_hp' => $request->no_hp,
             'nama_usaha' => $request->nama_usaha,
             'alamat_usaha' => $request->alamat_usaha,
         ]);

@@ -14,7 +14,14 @@ class PajakRestoran extends Model
     protected $fillable = [
         'npwpd',
         'nama_pemilik',
+        'slug',
+        'no_hp',
         'nama_usaha',
         'alamat_usaha',
     ];
+
+    public function laporan_pajak_restoran()
+    {
+        return $this->hasMany(LaporanPajakRestoran::class);
+    }
 }

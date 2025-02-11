@@ -39,6 +39,11 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">No Hanphone</label>
+                                        <input type="text" id="simpleinput" name="no_hp" data-toggle="input-mask" data-mask-format="9999-9999-9999" inputmode="text" class="form-control">
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Nama Usaha</label>
                                         <input type="text" id="simpleinput" name="nama_usaha" class="form-control">
                                     </div>

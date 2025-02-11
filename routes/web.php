@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanPajakHiburanController;
+use App\Http\Controllers\LaporanPajakHotelController;
+use App\Http\Controllers\LaporanPajakRestoranController;
 use App\Http\Controllers\PajakHiburanController;
 use App\Http\Controllers\PajakHotelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PajakRestoranController;
+use App\Models\LaporanPajakRestoran;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -48,6 +52,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/hiburan/{id}', [PajakHiburanController::class, 'show'])->name('hiburan.detail');
     Route::put('/hiburan/{id}', [PajakHiburanController::class, 'update'])->name('hiburan.update');
     Route::delete('/hiburan/{id}', [PajakHiburanController::class, 'destroy'])->name('hiburan.destroy');
+
+    // Laporan Restoran
+    Route::get('/add/laporan/restoran/{pajakrestoran:slug}', [LaporanPajakRestoranController::class, 'create'])->name('laporanpajakrestoran.create');
+    Route::post('/add/laporan/restoran/{pajakrestoran:slug}/store', [LaporanPajakRestoranController::class, 'store'])->name('laporanpajakrestoran.store');
+
+    // Laporan Hotel
+    Route::get('/add/laporan/hotel/{pajakhotel:slug}', [LaporanPajakHotelController::class, 'create'])->name('laporanpajakhotel.create');
+    Route::post('/add/laporan/hotel/{pajakhotel:slug}/store', [LaporanPajakHotelController::class, 'store'])->name('laporanpajakhotel.store');
+
+    // Laporan Hiburan
+    Route::get('/add/laporan/hiburan/{pajakhiburan:slug}', [LaporanPajakHiburanController::class, 'create'])->name('laporanpajakhiburan.create');
+    Route::post('/add/laporan/hiburan/{pajakhiburan:slug}/store', [LaporanPajakHiburanController::class, 'store'])->name('laporanpajakhiburan.store');
+
 });
 
 require __DIR__.'/auth.php';

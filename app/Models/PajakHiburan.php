@@ -14,7 +14,14 @@ class PajakHiburan extends Model
     protected $fillable = [
         'npwpd',
         'nama_pemilik',
+        'slug',
+        'no_hp',
         'nama_usaha',
         'alamat_usaha',
     ];
+
+    public function laporan_pajak_hiburan()
+    {
+        return $this->hasMany(LaporanPajakHiburan::class);
+    }
 }

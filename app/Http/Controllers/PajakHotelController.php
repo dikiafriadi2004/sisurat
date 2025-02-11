@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PajakHotel;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class PajakHotelController extends Controller
@@ -28,6 +29,7 @@ class PajakHotelController extends Controller
         $request->validate([
             'npwpd' => 'required|min:3',
             'nama_pemilik' => 'required',
+            'no_hp' => 'required',
             'nama_usaha' => 'required',
             'alamat_usaha' => 'required',
         ]);
@@ -35,6 +37,8 @@ class PajakHotelController extends Controller
         PajakHotel::create([
             'npwpd' => $request->npwpd,
             'nama_pemilik' => $request->nama_pemilik,
+            'slug' => Str::slug($request->nama_pemilik . '-' . Str::random(5)),
+            'no_hp' => $request->no_hp,
             'nama_usaha' => $request->nama_usaha,
             'alamat_usaha' => $request->alamat_usaha,
         ]);
@@ -58,6 +62,7 @@ class PajakHotelController extends Controller
     {
         $request->validate([
             'nama_pemilik' => 'required',
+            'no_hp' => 'required',
             'nama_usaha' => 'required',
             'alamat_usaha' => 'required',
         ]);
@@ -66,6 +71,7 @@ class PajakHotelController extends Controller
 
         $pajakhotel->update([
             'nama_pemilik' => $request->nama_pemilik,
+            'no_hp' => $request->no_hp,
             'nama_usaha' => $request->nama_usaha,
             'alamat_usaha' => $request->alamat_usaha,
         ]);

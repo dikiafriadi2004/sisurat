@@ -11,15 +11,26 @@
                 <div class="col-xl-5">
                     <div class="card auth-card">
                         <div class="card-body px-3 py-5">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="mx-auto mb-4 text-center auth-logo">
                                 <a href="index.html" class="logo-dark">
-                                    <img src="assets/images/logo-sm.png" height="30" class="me-1" alt="logo sm">
-                                    <img src="assets/images/logo-dark.png" height="24" alt="logo dark">
+                                    <img src="{{ asset('assets/images/logo-sm.png') }}" height="30" class="me-1"
+                                        alt="logo sm">
+                                    <img src="{{ asset('assets/images/logo-dark.png') }}" height="24" alt="logo dark">
                                 </a>
 
                                 <a href="index.html" class="logo-light">
-                                    <img src="assets/images/logo-sm.png" height="30" class="me-1" alt="logo sm">
-                                    <img src="assets/images/logo-light.png" height="24" alt="logo light">
+                                    <img src="{{ asset('assets/images/logo-sm.png') }}" height="30" class="me-1"
+                                        alt="logo sm">
+                                    <img src="{{ asset('assets/images/logo-light.png') }}" height="24" alt="logo light">
                                 </a>
                             </div>
 
@@ -33,16 +44,16 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="name">Name</label>
                                         <input type="name" id="name" name="name" class="form-control"
-                                            placeholder="Enter your name">
+                                            placeholder="Enter your name" value="{{ old('name') }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="email">Email</label>
                                         <input type="email" id="email" name="email" class="form-control"
-                                            placeholder="Enter your email">
+                                            placeholder="Enter your email" value="{{ old('email') }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="password">Password</label>
-                                        <input type="password   " id="password" name="password" class="form-control"
+                                        <input type="password" id="password" name="password" class="form-control"
                                             placeholder="Enter your password">
                                     </div>
 

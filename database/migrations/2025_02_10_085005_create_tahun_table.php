@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pajak_hiburan', function (Blueprint $table) {
+        Schema::create('tahun', function (Blueprint $table) {
             $table->id();
-            $table->string('npwpd')->unique();
-            $table->string('nama_pemilik');
-            $table->string('slug')->unique();
-            $table->string('no_hp');
-            $table->string('nama_usaha');
-            $table->string('alamat_usaha');
+            $table->string('nama_tahun');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pajak_hiburan');
+        Schema::dropIfExists('tahun');
     }
 };

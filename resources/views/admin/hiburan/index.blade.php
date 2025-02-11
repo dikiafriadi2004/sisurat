@@ -40,6 +40,7 @@
                                         <th class="border-0 py-2">NPWD</th>
                                         <th class="border-0 py-2">Nama Pemilik</th>
                                         <th class="border-0 py-2">Nama Usaha</th>
+                                        <th class="border-0 py-2">No Hanphone</th>
                                         <th class="border-0 py-2">Alamat Usaha</th>
                                         <th class="border-0 py-2">Action</th>
                                     </tr>
@@ -65,6 +66,11 @@
                                             <td>
                                                 <div>
                                                     <h5 class="fs-14 m-0 fw-normal">{{ $item->nama_usaha }}</h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h5 class="fs-14 m-0 fw-normal">{{ $item->no_hp }}</h5>
                                                 </div>
                                             </td>
                                             <td>
