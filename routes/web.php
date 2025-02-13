@@ -66,12 +66,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/add/laporan/hiburan/{pajakhiburan:slug}/store', [LaporanPajakHiburanController::class, 'store'])->name('laporanpajakhiburan.store');
 
     // Surat Pemberitahuan
-    Route::get('restoran/surat/{id}', [PajakRestoranController::class, 'getbuatsuratpemberitahuan'])->name('restoran.getbuatsuratpemberitahuan');
-    Route::put('restoran/surat/{id}', [PajakRestoranController::class, 'buatsuratpemberitahuan'])->name('restoran.buatsuratpemberitahuan');
+    Route::get('restoran/surat/pemberitahuan/{id}', [PajakRestoranController::class, 'getbuatsuratpemberitahuan'])->name('restoran.getbuatsuratpemberitahuan');
+    Route::put('restoran/surat/pemberitahuan/{id}', [PajakRestoranController::class, 'buatsuratpemberitahuan'])->name('restoran.buatsuratpemberitahuan');
 
-    // Route::get('restoran/surat/download/{id}', [PajakRestoranController::class, 'getdownloadsuratpemberitahuan'])->name('restoran.getdownloadsuratpemberitahuan');
+    Route::post('restoran/surat/pemberitahuan/download/{id}', [PajakRestoranController::class, 'suratpemberitahuan'])->name('restoran.suratpemberitahuan');
 
-    Route::post('restoran/surat/download/{id}', [PajakRestoranController::class, 'suratpemberitahuan'])->name('restoran.suratpemberitahuan');
+    // Surat Teguran
+    Route::get('restoran/surat/teguran/{id}', [PajakRestoranController::class, 'getbuatsuratteguran'])->name('restoran.getbuatsuratteguran');
+    Route::put('restoran/surat/teguran/{id}', [PajakRestoranController::class, 'buatsuratteguran'])->name('restoran.buatsuratteguran');
+
+    Route::post('restoran/surat/teguran/download/{id}', [PajakRestoranController::class, 'suratteguran'])->name('restoran.suratteguran');
+
 });
 
 require __DIR__ . '/auth.php';

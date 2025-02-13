@@ -95,6 +95,24 @@
                                                 @endif
 
                                             </td>
+                                            <td style="text-align:center;padding-top:5px;">
+                                                @if ($item->tgl_surat_pemberitahuan != null)
+                                                    <form action="{{ route('restoran.suratteguran', $item->id) }}"
+                                                        method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @include('admin.surat.restoran.download-surat-teguran')
+                                                        <a href="{{ route('restoran.suratteguran', $item->id) }}"
+                                                            class="text-primary"
+                                                            onclick="event.preventDefault();
+                                                this.closest('form').submit();">Download {{ $item->tgl_surat_teguran }}</a>
+                                                    </form>
+                                                @else
+                                                    <div>
+                                                        <h5 class="fs-14 m-0 fw-normal">Tidak Ada Surat</h5>
+                                                    </div>
+                                                @endif
+
+                                            </td>
                                             <td>
                                                 <form action="{{ route('restoran.destroy', $item->id) }}" method="POST">
                                                     <a href="{{ route('restoran.edit', $item->id) }}"

@@ -30,10 +30,15 @@
                                 </address>
                             </div> <!-- end col -->
                             <div class="col-md-6">
-                                <div>
+                                <div class="mb-2">
                                     <a href="{{ route('restoran.getbuatsuratpemberitahuan', $pajakrestoran->id) }}"
                                         class="btn btn-sm btn-soft-secondary me-1"><i class="bx bx-edit fs-16"></i> Buat
                                         Surat Pemberitahuan</a>
+                                </div>
+                                <div>
+                                    <a href="{{ route('restoran.getbuatsuratteguran', $pajakrestoran->id) }}"
+                                        class="btn btn-sm btn-soft-secondary me-1"><i class="bx bx-edit fs-16"></i> Buat
+                                        Surat Teguran</a>
                                 </div>
                             </div>
                         </div>

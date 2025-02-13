@@ -19,6 +19,6 @@
 </div>
 
 <div class="mb-3">
-    <input type="hidden" name="tgl_surat_pemberitahuan" class="form-control"
-        value="{{ $item->tgl_surat_pemberitahuan }}">
+    <input type="hidden" name="tgl_surat_teguran" class="form-control"
+        value="{{ $item->tgl_surat_teguran }}">
 </div>
