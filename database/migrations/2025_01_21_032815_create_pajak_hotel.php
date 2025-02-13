@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('nama_usaha');
             $table->string('alamat_usaha');
+            $table->string('tgl_surat_pemberitahuan')->nullable();
+            $table->string('tgl_surat_teguran')->nullable();
             $table->timestamps();
         });
     }

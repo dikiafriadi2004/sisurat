@@ -29,6 +29,13 @@
                                     Phone : {{ $pajakrestoran->no_hp }}
                                 </address>
                             </div> <!-- end col -->
+                            <div class="col-md-6">
+                                <div>
+                                    <a href="{{ route('restoran.getbuatsuratpemberitahuan', $pajakrestoran->id) }}"
+                                        class="btn btn-sm btn-soft-secondary me-1"><i class="bx bx-edit fs-16"></i> Buat
+                                        Surat Pemberitahuan</a>
+                                </div>
+                            </div>
                         </div>
                         <!-- end row -->
 
@@ -56,8 +63,8 @@
                                                     <td>@currency($item->jumlah_setoran)</td>
                                                     <td>
                                                         @if ($item->bukti_laporan)
-                                                            <a
-                                                                href="{{ asset(getenv('CUSTOM_UPLOAD_LOCATION') . '/' . $item->bukti_laporan) }}"  target="_blank">Lihat</a>
+                                                            <a href="{{ asset(getenv('CUSTOM_UPLOAD_LOCATION') . '/' . $item->bukti_laporan) }}"
+                                                                target="_blank">Lihat</a>
                                                         @else
                                                             <span>Tidak Ada Bukti Laporan</span>
                                                         @endif

@@ -65,6 +65,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/add/laporan/hiburan/{pajakhiburan:slug}', [LaporanPajakHiburanController::class, 'create'])->name('laporanpajakhiburan.create');
     Route::post('/add/laporan/hiburan/{pajakhiburan:slug}/store', [LaporanPajakHiburanController::class, 'store'])->name('laporanpajakhiburan.store');
 
+    // Surat Pemberitahuan
+    Route::get('restoran/surat/{id}', [PajakRestoranController::class, 'getbuatsuratpemberitahuan'])->name('restoran.getbuatsuratpemberitahuan');
+    Route::put('restoran/surat/{id}', [PajakRestoranController::class, 'buatsuratpemberitahuan'])->name('restoran.buatsuratpemberitahuan');
+
+    // Route::get('restoran/surat/download/{id}', [PajakRestoranController::class, 'getdownloadsuratpemberitahuan'])->name('restoran.getdownloadsuratpemberitahuan');
+
+    Route::post('restoran/surat/download/{id}', [PajakRestoranController::class, 'suratpemberitahuan'])->name('restoran.suratpemberitahuan');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

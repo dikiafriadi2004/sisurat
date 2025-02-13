@@ -39,6 +39,8 @@
                                         <th class="border-0 py-2">Nama Usaha</th>
                                         <th class="border-0 py-2">No Hanphone</th>
                                         <th class="border-0 py-2">Alamat Usaha</th>
+                                        <th class="border-0 py-2">Surat Pemberitahuan</th>
+                                        <th class="border-0 py-2">Surat Teguran</th>
                                         <th class="border-0 py-2">Action</th>
                                     </tr>
                                 </thead> <!-- end thead-->
@@ -74,6 +76,24 @@
                                                 <div>
                                                     <h5 class="fs-14 m-0 fw-normal">{{ $item->alamat_usaha }}</h5>
                                                 </div>
+                                            </td>
+                                            <td style="text-align:center;padding-top:5px;">
+                                                @if ($item->tgl_surat_pemberitahuan != null)
+                                                    <form action="{{ route('restoran.suratpemberitahuan', $item->id) }}"
+                                                        method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @include('admin.surat.restoran.download-surat-pemberitahuan')
+                                                        <a href="{{ route('restoran.suratpemberitahuan', $item->id) }}"
+                                                            class="text-primary"
+                                                            onclick="event.preventDefault();
+                                                this.closest('form').submit();">Download {{ $item->tgl_surat_pemberitahuan }}</a>
+                                                    </form>
+                                                @else
+                                                    <div>
+                                                        <h5 class="fs-14 m-0 fw-normal">Tidak Ada Surat</h5>
+                                                    </div>
+                                                @endif
+
                                             </td>
                                             <td>
                                                 <form action="{{ route('restoran.destroy', $item->id) }}" method="POST">

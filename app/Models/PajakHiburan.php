@@ -18,6 +18,8 @@ class PajakHiburan extends Model
         'no_hp',
         'nama_usaha',
         'alamat_usaha',
+        'tgl_surat_pemberitahuan',
+        'tgl_surat_teguran'
     ];
 
     public function laporan_pajak_hiburan()
