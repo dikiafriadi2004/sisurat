@@ -44,4 +44,126 @@ class LaporanPajakHotelController extends Controller
 
         return redirect()->route('hotel.detail', $pajakhotel->id);
     }
+
+    // Surat Pemberitahuan
+
+    public function getsuratpemberitahuan(PajakHotel $pajakhotel, LaporanPajakHotel $laporanpajakhotel)
+    {
+        return view('admin.surat.hotel.surat-pemberitahuan', compact('laporanpajakhotel', 'pajakhotel'));
+    }
+
+    public function suratpemberitahuan(Request $request, LaporanPajakHotel $laporanpajakhotel)
+    {
+        $request->validate([
+            'tgl_surat_pemberitahuan' => 'required',
+        ]);
+
+        $laporanpajakhotel->update([
+            'tgl_surat_pemberitahuan' => $request->tgl_surat_pemberitahuan
+        ]);
+
+        return redirect()->route('hotel.detail', $laporanpajakhotel->pajak_hotel_id)->with('success', 'Surat Pemberitahuan Hotel Berhasil dibuat');
+    }
+
+    public function downloadsuratpemberitahuan(Request $request, $id)
+    {
+        $pajakhotel = PajakHotel::find($id);
+        $laporanpajakhotel = LaporanPajakHotel::find($id);
+
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('surat/hotel/surat_pemberitahuan.docx', true);
+
+        $nama_pemilik = $request->nama_pemilik;
+        $nama_usaha = $request->nama_usaha;
+        $alamat_usaha = $request->alamat_usaha;
+        $tgl_surat_pemberitahuan = $laporanpajakhotel->tgl_surat_pemberitahuan;
+
+        $templateProcessor->setValues(
+            [
+                'nama_pemilik' => $nama_pemilik,
+                'nama_usaha' => $nama_usaha,
+                'alamat_usaha' => $alamat_usaha,
+                'tgl_surat_pemberitahuan' => $tgl_surat_pemberitahuan
+            ]
+        );
+
+        $pathToSave = $nama_pemilik . '_' . $tgl_surat_pemberitahuan . '_' . 'surat_pemberitahuan.docx';
+        $templateProcessor->saveAs($pathToSave);
+
+        header("Expires: Mon, 1 Apr 1974 05:00:00 GMT");
+        header("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Pragma: no-cache");
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachement;filename="' . $pathToSave . '"');
+
+        readfile($pathToSave);
+        unlink($pathToSave);
+
+        return view('admin.surat.hotel.download-surat-pemberitahuan', compact('pajakhotel', 'laporanpajakhotel'));
+    }
+
+
+    // Surat Teguran
+
+    public function getsuratteguran(PajakHotel $pajakhotel, LaporanPajakHotel $laporanpajakhotel)
+    {
+        return view('admin.surat.hotel.surat-teguran', compact('laporanpajakhotel', 'pajakhotel'));
+    }
+
+    public function suratteguran(Request $request, LaporanPajakHotel $laporanpajakhotel)
+    {
+        $request->validate([
+            'tgl_surat_teguran' => 'required',
+        ]);
+
+        $laporanpajakhotel->update([
+            'tgl_surat_teguran' => $request->tgl_surat_teguran
+        ]);
+
+        return redirect()->route('hotel.detail', $laporanpajakhotel->pajak_hotel_id)->with('success', 'Surat Teguran Hotel Berhasil dibuat');
+    }
+
+    public function downloadsuratteguran(Request $request, $id)
+    {
+        $pajakhotel = PajakHotel::find($id);
+        $laporanpajakhotel = LaporanPajakHotel::find($id);
+
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('surat/hotel/surat_teguran.docx', true);
+
+        $nama_pemilik = $request->nama_pemilik;
+        $nama_usaha = $request->nama_usaha;
+        $alamat_usaha = $request->alamat_usaha;
+        $tgl_surat_teguran = $laporanpajakhotel->tgl_surat_teguran;
+
+        $templateProcessor->setValues(
+            [
+                'nama_pemilik' => $nama_pemilik,
+                'nama_usaha' => $nama_usaha,
+                'alamat_usaha' => $alamat_usaha,
+                'tgl_surat_teguran' => $tgl_surat_teguran
+            ]
+        );
+
+        $pathToSave = $nama_pemilik . '_' . $tgl_surat_teguran . '_' . 'surat_teguran.docx';
+        $templateProcessor->saveAs($pathToSave);
+
+        header("Expires: Mon, 1 Apr 1974 05:00:00 GMT");
+        header("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Pragma: no-cache");
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachement;filename="' . $pathToSave . '"');
+
+        readfile($pathToSave);
+        unlink($pathToSave);
+
+        return view('admin.surat.hotel.download-surat-teguran', compact('pajakhotel', 'laporanpajakhotel'));
+    }
+
+
+
 }
