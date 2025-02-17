@@ -15,6 +15,8 @@ class LaporanPajakHiburan extends Model
         'jumlah_setoran',
         'bukti_laporan',
         'pajak_hiburan_id',
+        'tgl_surat_pemberitahuan',
+        'tgl_surat_teguran'
     ];
 
     public function pajakhiburan()

@@ -14,6 +14,8 @@ class LaporanPajakHotel extends Model
         'jumlah_setoran',
         'bukti_laporan',
         'pajak_hotel_id',
+        'tgl_surat_pemberitahuan',
+        'tgl_surat_teguran'
     ];
 
     public function pajakhotel()

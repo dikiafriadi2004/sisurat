@@ -57,6 +57,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/add/laporan/restoran/{pajakrestoran:slug}', [LaporanPajakRestoranController::class, 'create'])->name('laporanpajakrestoran.create');
     Route::post('/add/laporan/restoran/{pajakrestoran:slug}/store', [LaporanPajakRestoranController::class, 'store'])->name('laporanpajakrestoran.store');
 
+    // Surat Pemberitahuan Restoran
+    Route::get('/surat/laporan/restoran/{pajakrestoran:slug}/pemberitahuan/{laporanpajakrestoran}', [LaporanPajakRestoranController::class, 'getsuratpemberitahuan'])->name('laporanpajakrestoran.getsuratpemberitahuan');
+
+    Route::put('/surat/laporan/pemberitahuan/{laporanpajakrestoran}/suratpemberitahuan', [LaporanPajakRestoranController::class, 'suratpemberitahuan'])->name('laporanpajakrestoran.suratpemberitahuan');
+
+    // Surat Teguran Restoran
+    Route::get('/surat/laporan/restoran/{pajakrestoran:slug}/teguran/{laporanpajakrestoran}', [LaporanPajakRestoranController::class, 'getsuratteguran'])->name('laporanpajakrestoran.getsuratteguran');
+
+    Route::put('/surat/laporan/teguran/{laporanpajakrestoran}/suratteguran', [LaporanPajakRestoranController::class, 'suratteguran'])->name('laporanpajakrestoran.suratteguran');
+
+    // Download Surat Pemberitahuan dan Teguran Restoran
+    Route::post('restoran/surat/pemberitahuan/download/{id}', [LaporanPajakRestoranController::class, 'downloadsuratpemberitahuan'])->name('restoran.downloadsuratpemberitahuan');
+
+    Route::post('restoran/surat/teguran/download/{id}', [LaporanPajakRestoranController::class, 'downloadsuratteguran'])->name('restoran.downloadsuratteguran');
+
+
+
     // Laporan Hotel
     Route::get('/add/laporan/hotel/{pajakhotel:slug}', [LaporanPajakHotelController::class, 'create'])->name('laporanpajakhotel.create');
     Route::post('/add/laporan/hotel/{pajakhotel:slug}/store', [LaporanPajakHotelController::class, 'store'])->name('laporanpajakhotel.store');
@@ -64,18 +81,6 @@ Route::middleware('auth')->group(function () {
     // Laporan Hiburan
     Route::get('/add/laporan/hiburan/{pajakhiburan:slug}', [LaporanPajakHiburanController::class, 'create'])->name('laporanpajakhiburan.create');
     Route::post('/add/laporan/hiburan/{pajakhiburan:slug}/store', [LaporanPajakHiburanController::class, 'store'])->name('laporanpajakhiburan.store');
-
-    // Surat Pemberitahuan
-    Route::get('restoran/surat/pemberitahuan/{id}', [PajakRestoranController::class, 'getbuatsuratpemberitahuan'])->name('restoran.getbuatsuratpemberitahuan');
-    Route::put('restoran/surat/pemberitahuan/{id}', [PajakRestoranController::class, 'buatsuratpemberitahuan'])->name('restoran.buatsuratpemberitahuan');
-
-    Route::post('restoran/surat/pemberitahuan/download/{id}', [PajakRestoranController::class, 'suratpemberitahuan'])->name('restoran.suratpemberitahuan');
-
-    // Surat Teguran
-    Route::get('restoran/surat/teguran/{id}', [PajakRestoranController::class, 'getbuatsuratteguran'])->name('restoran.getbuatsuratteguran');
-    Route::put('restoran/surat/teguran/{id}', [PajakRestoranController::class, 'buatsuratteguran'])->name('restoran.buatsuratteguran');
-
-    Route::post('restoran/surat/teguran/download/{id}', [PajakRestoranController::class, 'suratteguran'])->name('restoran.suratteguran');
 
 });
 

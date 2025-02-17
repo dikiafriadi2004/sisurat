@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('bukti_laporan');
             $table->unsignedBigInteger('pajak_hiburan_id');
             $table->foreign('pajak_hiburan_id')->references('id')->on('pajak_hiburan')->onDelete('cascade');
+            $table->string('tgl_surat_pemberitahuan')->nullable();
+            $table->string('tgl_surat_teguran')->nullable();
             $table->timestamps();
         });
     }

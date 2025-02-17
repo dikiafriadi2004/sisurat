@@ -14,6 +14,8 @@ class LaporanPajakRestoran extends Model
         'jumlah_setoran',
         'bukti_laporan',
         'pajak_restoran_id',
+        'tgl_surat_pemberitahuan',
+        'tgl_surat_teguran'
     ];
 
     public function pajakrestoran()

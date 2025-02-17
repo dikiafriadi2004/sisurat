@@ -46,4 +46,124 @@ class LaporanPajakRestoranController extends Controller
 
         return redirect()->route('restoran.detail', $pajakrestoran->id);
     }
+
+    // Surat Pemberitahuan
+
+    public function getsuratpemberitahuan(PajakRestoran $pajakrestoran, LaporanPajakRestoran $laporanpajakrestoran)
+    {
+        return view('admin.surat.restoran.surat-pemberitahuan', compact('laporanpajakrestoran', 'pajakrestoran'));
+    }
+
+    public function suratpemberitahuan(Request $request, LaporanPajakRestoran $laporanpajakrestoran)
+    {
+        $request->validate([
+            'tgl_surat_pemberitahuan' => 'required',
+        ]);
+
+        $laporanpajakrestoran->update([
+            'tgl_surat_pemberitahuan' => $request->tgl_surat_pemberitahuan
+        ]);
+
+        return redirect()->route('restoran.detail', $laporanpajakrestoran->pajak_restoran_id)->with('success', 'Surat Pemberitahuan Restoran Berhasil dibuat');
+    }
+
+    public function downloadsuratpemberitahuan(Request $request, $id)
+    {
+        $pajakrestoran = PajakRestoran::find($id);
+        $laporanpajakrestoran = LaporanPajakRestoran::find($id);
+
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('surat/restoran/surat_pemberitahuan.docx', true);
+
+        $nama_pemilik = $request->nama_pemilik;
+        $nama_usaha = $request->nama_usaha;
+        $alamat_usaha = $request->alamat_usaha;
+        $tgl_surat_pemberitahuan = $laporanpajakrestoran->tgl_surat_pemberitahuan;
+
+        $templateProcessor->setValues(
+            [
+                'nama_pemilik' => $nama_pemilik,
+                'nama_usaha' => $nama_usaha,
+                'alamat_usaha' => $alamat_usaha,
+                'tgl_surat_pemberitahuan' => $tgl_surat_pemberitahuan
+            ]
+        );
+
+        $pathToSave = $nama_pemilik . '_' . $tgl_surat_pemberitahuan . '_' . 'surat_pemberitahuan.docx';
+        $templateProcessor->saveAs($pathToSave);
+
+        header("Expires: Mon, 1 Apr 1974 05:00:00 GMT");
+        header("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Pragma: no-cache");
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachement;filename="' . $pathToSave . '"');
+
+        readfile($pathToSave);
+        unlink($pathToSave);
+
+        return view('admin.surat.restoran.download-surat-pemberitahuan', compact('pajakrestoran', 'laporanpajakrestoran'));
+    }
+
+
+    // Surat Teguran
+
+    public function getsuratteguran(PajakRestoran $pajakrestoran, LaporanPajakRestoran $laporanpajakrestoran)
+    {
+        return view('admin.surat.restoran.surat-teguran', compact('laporanpajakrestoran', 'pajakrestoran'));
+    }
+
+    public function suratteguran(Request $request, LaporanPajakRestoran $laporanpajakrestoran)
+    {
+        $request->validate([
+            'tgl_surat_teguran' => 'required',
+        ]);
+
+        $laporanpajakrestoran->update([
+            'tgl_surat_teguran' => $request->tgl_surat_teguran
+        ]);
+
+        return redirect()->route('restoran.detail', $laporanpajakrestoran->pajak_restoran_id)->with('success', 'Surat Teguran Restoran Berhasil dibuat');
+    }
+
+    public function downloadsuratteguran(Request $request, $id)
+    {
+        $pajakrestoran = PajakRestoran::find($id);
+        $laporanpajakrestoran = LaporanPajakRestoran::find($id);
+
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('surat/restoran/surat_teguran.docx', true);
+
+        $nama_pemilik = $request->nama_pemilik;
+        $nama_usaha = $request->nama_usaha;
+        $alamat_usaha = $request->alamat_usaha;
+        $tgl_surat_teguran = $laporanpajakrestoran->tgl_surat_teguran;
+
+        $templateProcessor->setValues(
+            [
+                'nama_pemilik' => $nama_pemilik,
+                'nama_usaha' => $nama_usaha,
+                'alamat_usaha' => $alamat_usaha,
+                'tgl_surat_teguran' => $tgl_surat_teguran
+            ]
+        );
+
+        $pathToSave = $nama_pemilik . '_' . $tgl_surat_teguran . '_' . 'surat_teguran.docx';
+        $templateProcessor->saveAs($pathToSave);
+
+        header("Expires: Mon, 1 Apr 1974 05:00:00 GMT");
+        header("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Pragma: no-cache");
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachement;filename="' . $pathToSave . '"');
+
+        readfile($pathToSave);
+        unlink($pathToSave);
+
+        return view('admin.surat.restoran.download-surat-teguran', compact('pajakrestoran', 'laporanpajakrestoran'));
+    }
+
 }

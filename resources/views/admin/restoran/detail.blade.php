@@ -29,18 +29,6 @@
                                     Phone : {{ $pajakrestoran->no_hp }}
                                 </address>
                             </div> <!-- end col -->
-                            <div class="col-md-6">
-                                <div class="mb-2">
-                                    <a href="{{ route('restoran.getbuatsuratpemberitahuan', $pajakrestoran->id) }}"
-                                        class="btn btn-sm btn-soft-secondary me-1"><i class="bx bx-edit fs-16"></i> Buat
-                                        Surat Pemberitahuan</a>
-                                </div>
-                                <div>
-                                    <a href="{{ route('restoran.getbuatsuratteguran', $pajakrestoran->id) }}"
-                                        class="btn btn-sm btn-soft-secondary me-1"><i class="bx bx-edit fs-16"></i> Buat
-                                        Surat Teguran</a>
-                                </div>
-                            </div>
                         </div>
                         <!-- end row -->
 
@@ -57,6 +45,9 @@
                                                 <th class="border-0 py-2">Tahun</th>
                                                 <th class="border-0 py-2">Jumlah Setoran</th>
                                                 <th class="border-0 py-2">Bukti Laporan</th>
+                                                <th class="border-0 py-2">Surat Pemberitahuan</th>
+                                                <th class="border-0 py-2">Surat Teguran</th>
+                                                <th class="border-0 py-2">Buat Surat</th>
                                             </tr>
                                         </thead> <!-- end thead -->
                                         <tbody>
@@ -73,6 +64,63 @@
                                                         @else
                                                             <span>Tidak Ada Bukti Laporan</span>
                                                         @endif
+                                                    </td>
+                                                    <td style="text-align:center;padding-top:5px;">
+                                                        @if ($item->tgl_surat_pemberitahuan != null)
+                                                            <form
+                                                                action="{{ route('restoran.downloadsuratpemberitahuan', $item->id) }}"
+                                                                method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @include('admin.surat.restoran.download-surat-pemberitahuan')
+                                                                <a href="{{ route('restoran.downloadsuratpemberitahuan', $item->id) }}"
+                                                                    class="text-primary"
+                                                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">Download
+                                                                    {{ $item->tgl_surat_pemberitahuan }}</a>
+                                                            </form>
+                                                        @else
+                                                            <div>
+                                                                <h5 class="fs-14 m-0 fw-normal">Tidak Ada Surat</h5>
+                                                            </div>
+                                                        @endif
+                                                    </td>
+                                                    <td style="text-align:center;padding-top:5px;">
+                                                        @if ($item->tgl_surat_teguran != null)
+                                                            <form
+                                                                action="{{ route('restoran.downloadsuratteguran', $item->id) }}"
+                                                                method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @include('admin.surat.restoran.download-surat-teguran')
+                                                                <a href="{{ route('restoran.downloadsuratteguran', $item->id) }}"
+                                                                    class="text-primary"
+                                                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">Download
+                                                                    {{ $item->tgl_surat_teguran }}</a>
+                                                            </form>
+                                                        @else
+                                                            <div>
+                                                                <h5 class="fs-14 m-0 fw-normal">Tidak Ada Surat</h5>
+                                                            </div>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+
+                                                        <div>
+                                                            <a href="{{ route('laporanpajakrestoran.getsuratpemberitahuan', [$pajakrestoran->slug, $item]) }}"
+                                                                class="btn btn-outline-primary mb-2">Buat Surat
+                                                                Pemberitahuan</a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="{{ route('laporanpajakrestoran.getsuratteguran', [$pajakrestoran->slug, $item]) }}"
+                                                                class="btn btn-outline-primary mb-2">Buat Surat Teguran</a>
+                                                        </div>
+                                                        <!-- Button trigger modal -->
+                                                        {{-- <button type="button" class="btn btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                            Buat Surat
+                                                        </button>
+
+                                                        @include('admin.restoran.modal-surat') --}}
                                                     </td>
                                                 </tr>
                                             @endforeach
