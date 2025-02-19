@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('bulan');
             $table->string('tahun');
             $table->string('jumlah_setoran');
-            $table->string('bukti_laporan');
+            $table->string('bukti_laporan')->nullable();
             $table->unsignedBigInteger('pajak_hotel_id');
             $table->foreign('pajak_hotel_id')->references('id')->on('pajak_hotel')->onDelete('cascade');
             $table->string('tgl_surat_pemberitahuan')->nullable();

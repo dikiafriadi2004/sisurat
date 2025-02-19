@@ -74,8 +74,7 @@
                                                                 @include('admin.surat.hiburan.download-surat-pemberitahuan')
                                                                 <a href="{{ route('hiburan.downloadsuratpemberitahuan', $item->id) }}"
                                                                     class="text-primary"
-                                                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">Download
+                                                                    onclick="event.preventDefault(); this.closest('form').submit();">Download
                                                                     {{ $item->tgl_surat_pemberitahuan }}</a>
                                                             </form>
                                                         @else
@@ -93,8 +92,7 @@
                                                                 @include('admin.surat.hiburan.download-surat-teguran')
                                                                 <a href="{{ route('hiburan.downloadsuratteguran', $item->id) }}"
                                                                     class="text-primary"
-                                                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">Download
+                                                                    onclick="event.preventDefault(); this.closest('form'). submit();">Download
                                                                     {{ $item->tgl_surat_teguran }}</a>
                                                             </form>
                                                         @else
