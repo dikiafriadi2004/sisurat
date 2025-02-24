@@ -9,6 +9,7 @@ use App\Http\Controllers\PajakHotelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PajakRestoranController;
+use App\Http\Controllers\UserController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -112,6 +113,9 @@ Route::middleware('auth')->group(function () {
     Route::post('hiburan/surat/pemberitahuan/download/{id}', [LaporanPajakHiburanController::class, 'downloadsuratpemberitahuan'])->name('hiburan.downloadsuratpemberitahuan');
 
     Route::post('hiburan/surat/teguran/download/{id}', [LaporanPajakHiburanController::class, 'downloadsuratteguran'])->name('hiburan.downloadsuratteguran');
+
+    // User
+    Route::resource('users', UserController::class);
 
 });
 
