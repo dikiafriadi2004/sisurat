@@ -5,6 +5,8 @@
 @endsection
 
 @push('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap4.css" />
 @endpush
 
 @section('content')
@@ -37,7 +39,7 @@
                                 <a href="{{ route('laporanpajakrestoran.create', $pajakrestoran->slug) }}"
                                     class="btn btn-primary">Tambah Laporan</a>
                                 <div class="table-responsive table-borderless text-nowrap mt-3 table-centered">
-                                    <table class="table mb-0">
+                                    <table class="table mb-0" id="myTable">
                                         <thead class="bg-light bg-opacity-50">
                                             <tr>
                                                 <th class="border-0 py-2">#</th>
@@ -104,23 +106,15 @@
                                                         @endif
                                                     </td>
                                                     <td>
-
-                                                        <div>
+                                                        <div class="text-center">
                                                             <a href="{{ route('laporanpajakrestoran.getsuratpemberitahuan', [$pajakrestoran->slug, $item]) }}"
                                                                 class="btn btn-outline-primary mb-2">Buat Surat
                                                                 Pemberitahuan</a>
                                                         </div>
-                                                        <div>
+                                                        <div class="text-center">
                                                             <a href="{{ route('laporanpajakrestoran.getsuratteguran', [$pajakrestoran->slug, $item]) }}"
                                                                 class="btn btn-outline-primary mb-2">Buat Surat Teguran</a>
                                                         </div>
-                                                        <!-- Button trigger modal -->
-                                                        {{-- <button type="button" class="btn btn-primary"
-                                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                            Buat Surat
-                                                        </button>
-
-                                                        @include('admin.restoran.modal-surat') --}}
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -139,4 +133,12 @@
 @endsection
 
 @push('js')
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap4.js"></script>
+<script>
+    new DataTable('#myTable');
+</script>
 @endpush

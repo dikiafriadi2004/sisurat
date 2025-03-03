@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -27,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $permissions = Permission::get();
+        return view('admin.users.create', compact('permissions'));
     }
 
     /**
@@ -56,6 +58,7 @@ class UserController extends Controller
         ];
 
         $newUser = User::create($data);
+        $newUser->syncPermissions($request->permissions);
 
         return redirect()->route('users.index')->with('success', 'User berhasil ditambah');
     }
@@ -73,7 +76,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $permissions = Permission::get();
+        $userPermissions = $user->getPermissionNames()->toArray();
+        return view('admin.users.edit', compact('user', 'permissions', 'userPermissions'));
     }
 
     /**
@@ -102,6 +107,8 @@ class UserController extends Controller
         ];
 
         User::where('id', $user->id)->update($data);
+
+        $user->syncPermissions($request->permissions);
 
         return redirect()->route('users.index')->with('success', 'User berhasil diubah');
     }

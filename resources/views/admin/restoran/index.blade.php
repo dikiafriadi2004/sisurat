@@ -76,7 +76,6 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <form action="{{ route('restoran.destroy', $item->id) }}" method="POST">
                                                     <a href="{{ route('restoran.edit', $item->id) }}"
                                                         class="btn btn-sm btn-soft-secondary me-1"><i
                                                             class="bx bx-edit fs-16"></i></a>
@@ -84,14 +83,10 @@
                                                         class="btn btn-sm btn-soft-primary me-1"><i
                                                             class="bx bx-file fs-16"></i></a>
 
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('restoran.destroy', $item->id) }}"
-                                                        class="btn btn-sm btn-soft-danger"
-                                                        onclick="event.preventDefault();
-                                                this.closest('form').submit();"><i
-                                                            class="bx bx-trash fs-16"></i></a>
-                                                </form>
+                                                            <button class="btn btn-sm btn-soft-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#modalDeleteRestoran{{ $item->id }}">
+                                                    <i class="bx bx-trash fs-16"></i></a>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -107,4 +102,6 @@
             </div> <!-- end col -->
         </div> <!-- end row -->
     </div>
+
+    @include('admin.restoran.modal-delete')
 @endsection

@@ -30,41 +30,50 @@
 
             <li class="menu-title">Apps</li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('restoran.index') }}">
-                    <span class="nav-icon">
-                        <iconify-icon icon="solar:chef-hat-bold"></iconify-icon>
-                    </span>
-                    <span class="nav-text"> Pajak Restoran </span>
-                </a>
-            </li>
+            @can('Pajak Restoran')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('restoran.index') }}">
+                        <span class="nav-icon">
+                            <iconify-icon icon="solar:chef-hat-bold"></iconify-icon>
+                        </span>
+                        <span class="nav-text"> Pajak Restoran </span>
+                    </a>
+                </li>
+            @endcan
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('hotel.index') }}">
-                    <span class="nav-icon">
-                        <iconify-icon icon="solar:buildings-2-broken"></iconify-icon>
-                    </span>
-                    <span class="nav-text"> Pajak Hotel </span>
-                </a>
-            </li>
+            @can('Pajak Hotel')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('hotel.index') }}">
+                        <span class="nav-icon">
+                            <iconify-icon icon="solar:buildings-2-broken"></iconify-icon>
+                        </span>
+                        <span class="nav-text"> Pajak Hotel </span>
+                    </a>
+                </li>
+            @endcan
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('hiburan.index') }}">
-                    <span class="nav-icon">
-                        <iconify-icon icon="solar:ticket-bold-duotone"></iconify-icon>
-                    </span>
-                    <span class="nav-text"> Pajak Hiburan </span>
-                </a>
-            </li>
+            @can('Pajak Hiburan')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('hiburan.index') }}">
+                        <span class="nav-icon">
+                            <iconify-icon icon="solar:ticket-bold-duotone"></iconify-icon>
+                        </span>
+                        <span class="nav-text"> Pajak Hiburan </span>
+                    </a>
+                </li>
+            @endcan
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('users.index') }}">
-                    <span class="nav-icon">
-                        <iconify-icon icon="solar:user-bold"></iconify-icon>
-                    </span>
-                    <span class="nav-text"> User </span>
-                </a>
-            </li>
+            @can('Admin Users')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.index') }}">
+                        <span class="nav-icon">
+                            <iconify-icon icon="solar:user-bold"></iconify-icon>
+                        </span>
+                        <span class="nav-text"> User </span>
+                    </a>
+                </li>
+            @endcan
+
         </ul>
     </div>
 </div>
