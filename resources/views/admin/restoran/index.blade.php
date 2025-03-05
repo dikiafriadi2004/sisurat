@@ -13,6 +13,13 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
+                        @if (Session::has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <div class="d-flex flex-wrap justify-content-between gap-3">
                             <form action="{{ route('restoran.index') }}" method="GET">
                                 <div class="search-bar">
@@ -76,14 +83,14 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                    <a href="{{ route('restoran.edit', $item->id) }}"
-                                                        class="btn btn-sm btn-soft-secondary me-1"><i
-                                                            class="bx bx-edit fs-16"></i></a>
-                                                    <a href="{{ route('restoran.detail', $item->id) }}"
-                                                        class="btn btn-sm btn-soft-primary me-1"><i
-                                                            class="bx bx-file fs-16"></i></a>
+                                                <a href="{{ route('restoran.edit', $item->id) }}"
+                                                    class="btn btn-sm btn-soft-secondary me-1"><i
+                                                        class="bx bx-edit fs-16"></i></a>
+                                                <a href="{{ route('restoran.detail', $item->id) }}"
+                                                    class="btn btn-sm btn-soft-primary me-1"><i
+                                                        class="bx bx-file fs-16"></i></a>
 
-                                                            <button class="btn btn-sm btn-soft-danger" data-bs-toggle="modal"
+                                                <button class="btn btn-sm btn-soft-danger" data-bs-toggle="modal"
                                                     data-bs-target="#modalDeleteRestoran{{ $item->id }}">
                                                     <i class="bx bx-trash fs-16"></i></a>
                                                 </button>
