@@ -5,16 +5,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete {{ $item->name }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data {{ $item->name }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('users.destroy', $item->id) }}" method="POST">
                     <div class="modal-body">
                         @csrf
                         @method('DELETE')
-                        Do you really want to delete these, {{ $item->name }}?
-                        <br>
-                        This process cannot be undone.
+                        Apakah kamu yakin untuk menghapus data, {{ $item->name }}?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

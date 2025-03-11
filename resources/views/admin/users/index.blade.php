@@ -14,8 +14,7 @@
                     <div class="card-body">
                         @if (Session::has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 {{ session('success') }}
                             </div>
                         @endif
@@ -64,6 +63,10 @@
                                                 </div>
                                             </td>
                                             <td>
+                                                <a href="{{ route('users.edit', ['user' => $item->id]) }}"
+                                                    class="btn btn-sm btn-soft-primary me-1">
+                                                    <i class="bx bx-file fs-16"></i>
+                                                </a>
                                                 <button class="btn btn-sm btn-soft-danger" data-bs-toggle="modal"
                                                     data-bs-target="#modalDeleteUser{{ $item->id }}">
                                                     <i class="bx bx-trash fs-16"></i></a>

@@ -5,7 +5,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete {{ $item->name }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data {{ $item->nama_pemilik }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('hiburan.destroy', $item->id) }}" method="POST">
